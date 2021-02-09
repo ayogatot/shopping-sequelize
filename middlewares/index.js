@@ -26,4 +26,39 @@ module.exports = {
       sendResponse(res, 500, error, []);
     }
   },
+
+  basicAuth: (req, res, next) => {
+    const authHeader = req.headers.authorization;
+    if (!authHeader) {
+      const err = new Error('You are not authenticated');
+
+      res.setHeader('WWW-Authenticate', 'Basic');
+      err.status = 401;
+      err.message = 'You are not authenticated';
+      return res
+        .status(401)
+        .json({ status: 401, message: 'You are not authenticated' });
+    }
+
+    const auth = Buffer.from(authHeader.split(' ')[1], 'base64')
+      .toString()
+      .split(':');
+    const username = auth[0];
+    const password = auth[1];
+
+    if (
+      username === 'shoppingcart-admin' &&
+      password === 'p@ssw0rd123d)OGVYH='
+    ) {
+      next();
+    } else {
+      const err = new Error('You are not authenticated');
+
+      res.setHeader('WWW-Authenticate', 'Basic');
+      err.status = 401;
+      return res
+        .status(401)
+        .json({ status: 401, message: 'You are not authenticated' });
+    }
+  },
 };

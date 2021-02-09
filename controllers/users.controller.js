@@ -6,6 +6,10 @@ module.exports = {
     try {
       const user = await Users.findAll();
 
+      if (!user) {
+        return sendResponse(res, 500, 'User is not found', []);
+      }
+
       return sendResponse(res, 200, 'Successfully get all Users', user);
     } catch (error) {
       return sendResponse(res, 500, error, []);
@@ -16,6 +20,10 @@ module.exports = {
     const { id } = req.params;
     try {
       const user = await Users.findOne({ where: { id } });
+
+      if (!user) {
+        return sendResponse(res, 500, 'User is not found', []);
+      }
 
       return sendResponse(res, 200, 'Successfully get user by Id', user);
     } catch (error) {

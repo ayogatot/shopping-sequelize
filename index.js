@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 
 import { sequelize } from './models';
+import { basicAuth } from './middlewares';
 
 import productsRoute from './routes/products.route';
 import usersRoute from './routes/users.route';
@@ -13,8 +14,8 @@ const PORT = 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/api/v1/products', productsRoute);
-app.use('/api/v1/users', usersRoute);
+app.use('/api/v1/products', basicAuth, productsRoute);
+app.use('/api/v1/users', basicAuth, usersRoute);
 app.use('/api/v1/auth', authRoute);
 
 app.listen(PORT, async () => {
