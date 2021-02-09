@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({ Users }) {
       // define association here
-      this.hasOne(Users);
+      this.belongsTo(Users, { foreignKey: 'fk_userId', targetKey: 'id' });
     }
   }
   Carts.init(
