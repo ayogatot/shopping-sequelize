@@ -7,7 +7,6 @@ module.exports = {
     const { productId, quantity } = req.body;
 
     try {
-      // Check if user Cart is available
       let cart = await Carts.findOne({
         where: { userId: id, isCheckout: 0 },
       });
@@ -39,71 +38,49 @@ module.exports = {
     }
   },
 
-  //   getAllProducts: async (req, res) => {
-  //     try {
-  //       const product = await Products.findAll();
+  updateQuantityCartItem: async (req, res) => {
+    const { id } = req.user;
+    const { productId, quantity } = req.body;
 
-  //       return sendResponse(res, 200, 'Successfully get all Products', product);
-  //     } catch (error) {
-  //       return sendResponse(res, 500, error, []);
-  //     }
-  //   },
+    try {
+      const cart = await Carts.findOne({
+        where: { userId: id, isCheckout: 0 },
+      });
 
-  //   getProductById: async (req, res) => {
-  //     const { id } = req.params;
-  //     try {
-  //       const product = await Products.findOne({ where: { id } });
+      const cartItem = await CartItems.findOne({
+        where: { cartId: cart.id, productId },
+      });
 
-  //       return sendResponse(res, 200, 'Successfully get Product by Id', product);
-  //     } catch (error) {
-  //       return sendResponse(res, 500, error, []);
-  //     }
-  //   },
+      cartItem.quantity = +quantity;
+      cartItem.save();
 
-  //   updateProductById: async (req, res) => {
-  //     const { id } = req.params;
-  //     const { name, price, quantity } = req.body;
+      return sendResponse(
+        res,
+        200,
+        'Successfully update Quantity cart item',
+        cartItem
+      );
+    } catch (error) {
+      return sendResponse(res, 500, error, []);
+    }
+  },
 
-  //     try {
-  //       const product = await Products.findOne({ where: { id } });
+  deleteItemFromCart: async (req, res) => {
+    const { id } = req.params;
+    try {
+      const cartItem = await CartItems.findOne({ where: { id } });
 
-  //       if (!product) {
-  //         return sendResponse(res, 500, 'Product Id is not found', []);
-  //       }
+      if (!cartItem) {
+        return sendResponse(res, 500, 'Cart Item Id is not found', []);
+      }
 
-  //       product.name = name;
-  //       product.price = price;
-  //       product.quantity = quantity;
+      await cartItem.destroy();
 
-  //       await product.save();
-
-  //       return sendResponse(
-  //         res,
-  //         200,
-  //         'Successfully update Product by Id',
-  //         product
-  //       );
-  //     } catch (error) {
-  //       return sendResponse(res, 500, error, []);
-  //     }
-  //   },
-
-  //   deleteProductById: async (req, res) => {
-  //     const { id } = req.params;
-  //     try {
-  //       const product = await Products.findOne({ where: { id } });
-
-  //       if (!product) {
-  //         return sendResponse(res, 500, 'Product Id is not found', []);
-  //       }
-
-  //       await product.destroy();
-
-  //       return sendResponse(res, 200, 'Successfully delete Product by Id', {
-  //         id,
-  //       });
-  //     } catch (error) {
-  //       return sendResponse(res, 500, error, []);
-  //     }
-  //   },
+      return sendResponse(res, 200, 'Successfully delete Cart Item from Cart', {
+        id,
+      });
+    } catch (error) {
+      return sendResponse(res, 500, error, []);
+    }
+  },
 };
