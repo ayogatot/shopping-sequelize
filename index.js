@@ -9,6 +9,7 @@ import productsRoute from './routes/products.route';
 import cartsRoute from './routes/carts.route';
 import usersRoute from './routes/users.route';
 import authRoute from './routes/auth.route';
+import paymentRoute from './routes/payment.route';
 
 const app = express();
 const PORT = 5000;
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api/v1/cart-items', isAuthenticated, cartItemsRoute);
+app.use('/api/v1/payment', isAuthenticated, paymentRoute);
 app.use('/api/v1/products', basicAuth, productsRoute);
 app.use('/api/v1/carts', isAuthenticated, cartsRoute);
 app.use('/api/v1/users', basicAuth, usersRoute);

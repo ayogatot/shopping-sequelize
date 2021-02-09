@@ -15,6 +15,8 @@ module.exports = {
 
       const product = await Products.findOne({ where: { id: productId } });
 
+      console.log(productId, product.name);
+
       if (!product) {
         return sendResponse(res, 500, 'Product tidak ditemukan', []);
       } else if (quantity > product.quantity) {
