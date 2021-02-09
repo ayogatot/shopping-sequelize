@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api/v1/cart-items', isAuthenticated, cartItemsRoute);
 app.use('/api/v1/payment', isAuthenticated, paymentRoute);
-app.use('/api/v1/products', basicAuth, productsRoute);
+app.use('/api/v1/products', productsRoute);
 app.use('/api/v1/carts', isAuthenticated, cartsRoute);
 app.use('/api/v1/users', basicAuth, usersRoute);
 app.use('/api/v1/auth', authRoute);

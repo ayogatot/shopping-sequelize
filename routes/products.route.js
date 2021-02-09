@@ -6,12 +6,13 @@ import {
   updateProductById,
   deleteProductById,
 } from '../controllers/products.controller';
+import { basicAuth } from '../middlewares';
 const Router = express.Router();
 
-Router.route('/').post(createProduct).get(getAllProducts);
+Router.route('/').post(basicAuth, createProduct).get(getAllProducts);
 Router.route('/:id')
   .get(getProductById)
-  .put(updateProductById)
-  .delete(deleteProductById);
+  .put(basicAuth, updateProductById)
+  .delete(basicAuth, deleteProductById);
 
 module.exports = Router;
