@@ -14,7 +14,7 @@ module.exports = {
 
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      const user = await Users.findOne({ where: { id: decoded.id } });
+      const user = await Users.findOne({ where: { id: decoded.user.id } });
 
       if (!user) {
         return sendResponse(res, 500, 'Token is not valid!', []);

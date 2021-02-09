@@ -18,7 +18,7 @@ module.exports = {
         return sendResponse(res, 500, 'Password not match', []);
       }
 
-      const token = jwt.sign({ ...user }, process.env.JWT_SECRET, {
+      const token = jwt.sign({ user }, process.env.JWT_SECRET, {
         expiresIn: '7d',
       });
 
