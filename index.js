@@ -1,5 +1,7 @@
+import cors from 'cors';
 import express from 'express';
 import bodyParser from 'body-parser';
+import compression from 'compression';
 
 import { sequelize } from './models';
 import { basicAuth, isAuthenticated } from './middlewares';
@@ -14,6 +16,8 @@ import paymentRoute from './routes/payment.route';
 const app = express();
 const PORT = 5000;
 
+app.use(cors());
+app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

@@ -1,10 +1,20 @@
 import jwt from 'jsonwebtoken';
+import { body, validationResult } from 'express-validator';
 
 import { Users } from '../models';
 import { sendResponse, decrypt, encrypt } from '../helpers';
 
 module.exports = {
   login: async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return sendResponse(res, 500, 'Body is not valid', {
+        error: true,
+        errors: errors.array(),
+      });
+    }
+
     const { email, password } = req.body;
 
     try {
@@ -32,6 +42,15 @@ module.exports = {
   },
 
   register: async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return sendResponse(res, 500, 'Body is not valid', {
+        error: true,
+        errors: errors.array(),
+      });
+    }
+
     const { email, password, name } = req.body;
 
     try {
@@ -43,4 +62,15 @@ module.exports = {
       return sendResponse(res, 500, error, []);
     }
   },
+
+  loginValidation: [
+    body('email').isEmail().notEmpty(),
+    body('password').notEmpty(),
+  ],
+
+  registerValidation: [
+    body('email').isEmail().notEmpty(),
+    body('password').notEmpty(),
+    body('name').notEmpty(),
+  ],
 };

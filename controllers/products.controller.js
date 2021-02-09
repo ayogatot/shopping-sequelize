@@ -1,8 +1,19 @@
+import { body, validationResult } from 'express-validator';
+
 import { Products } from '../models';
 import { sendResponse } from '../helpers';
 
 module.exports = {
   createProduct: async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return sendResponse(res, 500, 'Body is not valid', {
+        error: true,
+        errors: errors.array(),
+      });
+    }
+
     const { name, price, quantity } = req.body;
     try {
       const product = await Products.create({ name, price, quantity });
@@ -35,6 +46,15 @@ module.exports = {
   },
 
   updateProductById: async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return sendResponse(res, 500, 'Body is not valid', {
+        error: true,
+        errors: errors.array(),
+      });
+    }
+
     const { id } = req.params;
     const { name, price, quantity } = req.body;
 
@@ -80,4 +100,10 @@ module.exports = {
       return sendResponse(res, 500, error, []);
     }
   },
+
+  productValidation: [
+    body('name').isString().notEmpty(),
+    body('price').isNumeric().notEmpty(),
+    body('quantity').isNumeric().notEmpty(),
+  ],
 };

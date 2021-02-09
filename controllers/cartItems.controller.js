@@ -1,8 +1,19 @@
+import { body, validationResult } from 'express-validator';
+
 import { Carts, Products, CartItems } from '../models';
 import { sendResponse } from '../helpers';
 
 module.exports = {
   createCartItem: async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return sendResponse(res, 500, 'Body is not valid', {
+        error: true,
+        errors: errors.array(),
+      });
+    }
+
     const { id } = req.user;
     const { productId, quantity } = req.body;
 
@@ -41,6 +52,15 @@ module.exports = {
   },
 
   updateQuantityCartItem: async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return sendResponse(res, 500, 'Body is not valid', {
+        error: true,
+        errors: errors.array(),
+      });
+    }
+
     const { id } = req.user;
     const { productId, quantity } = req.body;
 
@@ -85,4 +105,9 @@ module.exports = {
       return sendResponse(res, 500, error, []);
     }
   },
+
+  cartItemValidation: [
+    body('productId').isNumeric().notEmpty(),
+    body('quantity').isNumeric().notEmpty(),
+  ],
 };
