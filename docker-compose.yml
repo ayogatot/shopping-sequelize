@@ -1,37 +1,41 @@
 version: '3'
 
 services:
-  mysql-test:
+  mysql-shop:
     image: mysql:5.7
-    container_name: mysql-test
+    container_name: mysql-shop
+    command: --default-authentication-plugin=mysql_native_password
     restart: always
     ports:
       - 3389:3306
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_USER=moeuser
-      - MYSQL_PASSWORD=moepass
-      - MYSQL_DATABASE=moe_db
+      - MYSQL_USER=shopuser
+      - MYSQL_PASSWORD=shoppass
+      - MYSQL_DATABASE=shoppingTest
     networks:
       - shopcart
 
-  sequelize-test:
-    container_name: sequelize-test
+  sequelize-shop:
+    container_name: sequelize-shop
     build: ./
     volumes:
-      - ./:/sequelize-test
+      - ./:/sequelize-shop
     ports:
       - 5000:5000
     stdin_open: true
-    command: sh -c "dockerize -wait tcp://mysql-test:3306 -timeout 100s -wait-retry-interval 10s && yarn init:db && yarn start"
+    command: sh -c "dockerize -wait tcp://mysql-shop:3306 -timeout 100s -wait-retry-interval 10s && yarn init:db && yarn start"
     environment:
-      - MYSQL_HOST=mysql-test
-      - MYSQL_USER=moeuser
-      - MYSQL_PASS=moepass
-      - MYSQL_DB=moe_db
+      - MYSQL_HOST=mysql-shop
+      - MYSQL_USER=shopuser
+      - MYSQL_PASS=shoppass
+      - MYSQL_DB=shoppingTest
       - MYSQL_PORT=3306
+      - IV=16
+      - KEY=uCVoiLlunX2rVj50ILxwPAGwkalvqoiB
+      - JWT_SECRET=SHOPPING_CART_SECRET_STORY
     depends_on:
-      - mysql-test
+      - mysql-shop
     networks:
       - shopcart
 

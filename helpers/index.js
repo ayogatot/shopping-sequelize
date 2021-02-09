@@ -1,7 +1,7 @@
 import crypto from 'crypto';
 const algorithm = 'aes-256-cbc';
 const key = process.env.KEY;
-const iv = crypto.randomBytes(Number(process.env.IV));
+const iv = crypto.randomBytes(16);
 
 module.exports = {
   sendResponse: (res, statusCode, message, data) => {

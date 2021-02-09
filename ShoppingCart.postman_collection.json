@@ -1,0 +1,637 @@
+{
+	"info": {
+		"_postman_id": "1bfd2487-ea2a-4d32-802a-0b0aed027429",
+		"name": "ShoppingCart",
+		"description": "Simple Shopping Cart REST API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "demo1@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Demo User 6",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "demo6@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "POST Product",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "p@ssw0rd123d)OGVYH=",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "shoppingcart-admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Keyboard Mechanical Rexus",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "120000",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "20",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL Products",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET BY ID Products",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "p@ssw0rd123d)OGVYH=",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "shoppingcart-admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/products/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT BY ID Product",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "p@ssw0rd123d)OGVYH=",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "shoppingcart-admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Keyboard Mechanical KYC",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "520000",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "20",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/products/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE BY ID Products",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "p@ssw0rd123d)OGVYH=",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "shoppingcart-admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/products/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "GET ALL Users",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "p@ssw0rd123d)OGVYH=",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "shoppingcart-admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET BY ID Users",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "p@ssw0rd123d)OGVYH=",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "shoppingcart-admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/users/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Carts",
+			"item": [
+				{
+					"name": "GET Cart User ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiRGVtbyBVc2VyIDEiLCJlbWFpbCI6ImRlbW8xQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiYTc1Y2M2ZWQ0YWRmNTBmODcxZDYwOGZiZDVmMjI5MDQ6NjRhM2M3MjM2NWU0MjZiZmMyMGFiYWU0OTg4NGIwYTciLCJjcmVhdGVkQXQiOiIyMDIxLTAyLTA5VDA1OjQzOjQzLjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIxLTAyLTA5VDA1OjQzOjQzLjAwMFoifSwiaWF0IjoxNjEyODUwOTQzLCJleHAiOjE2MTM0NTU3NDN9.buubhsb1gUkAao0o_6UqDGRz5Fi4fWXjTbH0KDqIgGg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/carts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"carts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart Item",
+			"item": [
+				{
+					"name": "POST CartItem",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiRGVtbyBVc2VyIDEiLCJlbWFpbCI6ImRlbW8xQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiYTc1Y2M2ZWQ0YWRmNTBmODcxZDYwOGZiZDVmMjI5MDQ6NjRhM2M3MjM2NWU0MjZiZmMyMGFiYWU0OTg4NGIwYTciLCJjcmVhdGVkQXQiOiIyMDIxLTAyLTA5VDA1OjQzOjQzLjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIxLTAyLTA5VDA1OjQzOjQzLjAwMFoifSwiaWF0IjoxNjEyODUwOTQzLCJleHAiOjE2MTM0NTU3NDN9.buubhsb1gUkAao0o_6UqDGRz5Fi4fWXjTbH0KDqIgGg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "productId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/cart-items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"cart-items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT QTY CartItem",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiRGVtbyBVc2VyIDEiLCJlbWFpbCI6ImRlbW8xQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiYTc1Y2M2ZWQ0YWRmNTBmODcxZDYwOGZiZDVmMjI5MDQ6NjRhM2M3MjM2NWU0MjZiZmMyMGFiYWU0OTg4NGIwYTciLCJjcmVhdGVkQXQiOiIyMDIxLTAyLTA5VDA1OjQzOjQzLjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIxLTAyLTA5VDA1OjQzOjQzLjAwMFoifSwiaWF0IjoxNjEyODUwOTQzLCJleHAiOjE2MTM0NTU3NDN9.buubhsb1gUkAao0o_6UqDGRz5Fi4fWXjTbH0KDqIgGg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "productId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/cart-items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"cart-items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE CartItem From Cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiRGVtbyBVc2VyIDEiLCJlbWFpbCI6ImRlbW8xQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiYTc1Y2M2ZWQ0YWRmNTBmODcxZDYwOGZiZDVmMjI5MDQ6NjRhM2M3MjM2NWU0MjZiZmMyMGFiYWU0OTg4NGIwYTciLCJjcmVhdGVkQXQiOiIyMDIxLTAyLTA5VDA1OjQzOjQzLjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIxLTAyLTA5VDA1OjQzOjQzLjAwMFoifSwiaWF0IjoxNjEyODUwOTQzLCJleHAiOjE2MTM0NTU3NDN9.buubhsb1gUkAao0o_6UqDGRz5Fi4fWXjTbH0KDqIgGg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "productId",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/cart-items/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"cart-items",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "Checkout Cart by User ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiRGVtbyBVc2VyIDEiLCJlbWFpbCI6ImRlbW8xQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiYTc1Y2M2ZWQ0YWRmNTBmODcxZDYwOGZiZDVmMjI5MDQ6NjRhM2M3MjM2NWU0MjZiZmMyMGFiYWU0OTg4NGIwYTciLCJjcmVhdGVkQXQiOiIyMDIxLTAyLTA5VDA1OjQzOjQzLjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIxLTAyLTA5VDA1OjQzOjQzLjAwMFoifSwiaWF0IjoxNjEyODUwOTQzLCJleHAiOjE2MTM0NTU3NDN9.buubhsb1gUkAao0o_6UqDGRz5Fi4fWXjTbH0KDqIgGg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/payment/checkout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"payment",
+								"checkout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirmation Payment by User ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiRGVtbyBVc2VyIDEiLCJlbWFpbCI6ImRlbW8xQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiYTc1Y2M2ZWQ0YWRmNTBmODcxZDYwOGZiZDVmMjI5MDQ6NjRhM2M3MjM2NWU0MjZiZmMyMGFiYWU0OTg4NGIwYTciLCJjcmVhdGVkQXQiOiIyMDIxLTAyLTA5VDA1OjQzOjQzLjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIxLTAyLTA5VDA1OjQzOjQzLjAwMFoifSwiaWF0IjoxNjEyODUwOTQzLCJleHAiOjE2MTM0NTU3NDN9.buubhsb1gUkAao0o_6UqDGRz5Fi4fWXjTbH0KDqIgGg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/payment/confirmation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"payment",
+								"confirmation"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
