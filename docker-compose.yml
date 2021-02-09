@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  mysql-test:
+    image: mysql:5.7
+    container_name: mysql-test
+    restart: always
+    ports:
+      - 3389:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=moeuser
+      - MYSQL_PASSWORD=moepass
+      - MYSQL_DATABASE=moe_db
+    networks:
+      - shopcart
+
+  sequelize-test:
+    container_name: sequelize-test
+    build: ./
+    volumes:
+      - ./:/sequelize-test
+    ports:
+      - 5000:5000
+    stdin_open: true
+    command: sh -c "dockerize -wait tcp://mysql-test:3306 -timeout 100s -wait-retry-interval 10s && yarn init:db && yarn start"
+    environment:
+      - MYSQL_HOST=mysql-test
+      - MYSQL_USER=moeuser
+      - MYSQL_PASS=moepass
+      - MYSQL_DB=moe_db
+      - MYSQL_PORT=3306
+    depends_on:
+      - mysql-test
+    networks:
+      - shopcart
+
+networks:
+  shopcart:
+    driver: bridge
